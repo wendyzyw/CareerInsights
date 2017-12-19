@@ -3,6 +3,10 @@
 var map = '';
 var center;
 
+var width = 960,
+    height = 500,
+    radius = 10;
+
 function initialize() {
   var mapOptions = {
     zoom: 15,

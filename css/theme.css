@@ -52,10 +52,18 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 	
-	/* <<< Header >>> */
+	/* <<< Homepage Header >>> */
 	.header { padding: 75px 0px 145px 0px; width: 100%; background: url(../img/header-bg.png) top center no-repeat; }
 	.header .Center { max-width: 1098px; margin: auto; position: relative; }
 	.header .arrow { position: absolute; bottom: -146px; right: -2px; }
+	
+	/* <<< content page header >> */
+	#topMenu { background: url(../img/topmenu.png) top center no-repeat; padding-top: 20px; height: 320px;}
+	#topMenu .Center { max-width: 1098px; margin: auto; position: relative; }
+	
+	.pageHeader { padding: 75px 0px 145px 0px; background: url(../img/topmenu.png) top center no-repeat; background-size: 100%; }
+	.pageHeader .Center { max-width: 1098px; margin: auto; position: relative; }
+	
 
 	/* <<< Top Bar >>> */
 	.Top_Bar { padding-bottom: 147px;  width: 100%; }
@@ -165,3 +173,11 @@ body {
 	footer .Center { padding: 35px 0px 35px 0px;  max-width: 1180px; margin: auto; text-align: center; }
 	footer p { font-size: 13px; color: #bbbcbc; margin: 0px;  font-family: 'Open Sans', sans-serif; font-weight: 400; }
 	footer a { color: #fff; text-decoration: none; }
+	
+	/* MACRO PAGE CSS	*/
+	.mesh { fill: none; stroke: #000; stroke-width: .25px; }
+
+	.start { fill: none; stroke: brown; }
+
+	.end { fill: none; stroke: steelblue; }
+	

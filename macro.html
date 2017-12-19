@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+<!--
+ZigZag Template
+http://www.templatemo.com/tm-471-zigzag
+-->
+    <!-- Title Tag -->
+	<title>Career Insights</title>
+
+    <!-- <<Mobile Viewport Code>> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+            
+    <!-- <<Attched Stylesheets>> -->
+	<link rel="stylesheet" href="css/theme.css" type="text/css" />
+	<link rel="stylesheet" href="css/media.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,600italic' rel='stylesheet' type='text/css'>
+    
+    <!-- <<Attched Javascripts>> -->
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/core.js"></script>
+	<script type="text/javascript" src="js/modernizr.js"></script>
+	
+</head>
+<body>
+	<script src="https://d3js.org/d3.v3.js"></script>
+	<script type="text/javascript" src="js/d3.hexbin.min.js"></script>
+	
+<!-- \\ Begin Holder \\ -->
+<div class="DesignHolder">
+	
+	<!-- \\ Begin Frame \\ -->
+	<div class="LayoutFrame">
+		
+		<!-- \\ Begin Header \\ -->
+		<header>
+        	<div class="Center" id="topMenu">
+				
+               <!-- \\ Begin Top Bar \\ -->
+                <div class="Top_Bar">	
+                    
+                    <div class="site-logo">
+                    
+                        <a href="#">
+						<!-- <figure><img src="img/logo.png" alt="Image"></figure> -->
+						</a>
+                    
+                    </div>
+			
+                    <!-- \\ Begin Navigation \\ -->
+                    <nav class="Navigation">
+        
+                        <ul>
+                            <li class="active"><a href="#"><span>home</span></a></li>
+                            <li class="gap"><a href="#About"><span>about</span></a></li>
+                            <li class="gap gap1"><a href="#Contact"><span>contact</span></a></li>
+                        </ul>
+                        
+                        <figure><img src="img/triangle-img.png" alt="Image" class="triangle"></figure>
+        
+                    </nav>
+                    <!-- // End Navigation // -->
+	
+                  <div class="clear"></div>
+                </div>
+                <!-- // End Top Bar // -->
+              
+
+                <!-- \\ Begin Product Section \\ -->
+                <div class="Sec_name">
+    				
+                    <ul>
+                    	<li>
+                                 
+                        </li>
+                    </ul>                    
+    
+                </div>
+                <!-- // End Product Section // -->
+			</div>
+		</header>
+		<!-- // End Header // -->
+		
+		<!-- \\ Begin Container \\ -->
+		<div id="Container">
+			<p id="p"></p>
+		</div>
+		<!-- // End Container // -->
+		
+		<!-- \\ Begin Footer \\-->
+		<footer>
+        	<div class="Center">
+				
+                <p>
+                
+                
+                 <a rel="nofollow" href="http://www.templatemo.com/tm-471-zigzag" target="_parent"></a>
+                
+                </p>
+
+			</div>
+		</footer>
+		<!-- // End Footer // -->
+		
+	</div>
+	<!-- // End Layout Frame // -->
+	
+</div>
+<!-- // End Design Holder // -->
+<script>
+var width = 960,
+    height = 500,
+    radius = 10;
+
+var p0 = [250, 200, 60],
+    p1 = [560, 300, 120];
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .call(transition, p0, p1);
+
+svg.append("path")
+    .attr("class", "mesh")
+    .attr("d", d3.hexbin()
+      .size([width, height])
+      .radius(radius)
+      .mesh);
+
+svg.selectAll("circle")
+    .data([p0, p1])
+  .enter().append("circle")
+    .attr("class", function(d, i) { return i ? "end" : "start"; })
+    .attr("cx", function(d) { return d[0]; })
+    .attr("cy", function(d) { return d[1]; })
+    .attr("r", function(d) { return d[2] / 2 - .5; });
+
+function transition(svg, start, end) {
+  var center = [width / 2, height / 2],
+      i = d3.interpolateZoom(start, end);
+
+  svg
+      .attr("transform", transform(start))
+    .transition()
+      .delay(250)
+      .duration(i.duration * 2)
+      .attrTween("transform", function() { return function(t) { return transform(i(t)); }; })
+      .each("end", function() { d3.select(this).call(transition, end, start); });
+
+  function transform(p) {
+    var k = height / p[2];
+    return "translate(" + (center[0] - p[0] * k) + "," + (center[1] - p[1] * k) + ")scale(" + k + ")";
+  }
+}
+</script>
+</body>
+
+</html>
