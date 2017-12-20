@@ -1,38 +1,41 @@
 /* ----------------------------------------- */
 /* line 7, ../sass/style.scss */
-.container {
-  width: 1000px;
-  line-height: 1.3;
+.Container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 50px;
+  margin-left: 50px;
+  line-height: 2em;
 }
 
-/* line 11, ../sass/style.scss */
+/* line 14, ../sass/style.scss */
 ol.even {
   position: relative;
-  left: 5.45455em;
+  left: 7.27273em;
 }
 
-/* line 15, ../sass/style.scss */
+/* line 18, ../sass/style.scss */
 ol.odd {
   position: relative;
   margin-top: -6.5%;
   margin-bottom: -6.5%;
 }
 
-/* line 20, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 .hex {
   position: relative;
   margin: 1em auto;
-  width: 6em;
-  height: 10.2em;
+  width: 8em;
+  height: 13.6em;
   border-radius: 1em/.5em;
   background: #ccc;
   transform: rotate(-90deg);
   display: inline-block;
-  margin-right: 4.61538em;
+  margin-right: 6.15385em;
   transition: all 150ms ease-in-out;
 }
 
-/* line 31, ../sass/style.scss */
+/* line 34, ../sass/style.scss */
 .hex:before, .hex:after {
   position: absolute;
   width: inherit;
@@ -42,33 +45,34 @@ ol.odd {
   content: '';
 }
 
-/* line 38, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 .hex:before {
   transform: rotate(60deg);
 }
 
-/* line 41, ../sass/style.scss */
+/* line 44, ../sass/style.scss */
 .hex:after {
   transform: rotate(-60deg);
 }
 
-/* line 44, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 .hex:hover {
-  background: #F58787;
+  background: url(../img/Client-bg1.png) center center repeat;
   cursor: pointer;
 }
 
 /* <<< content page header >> */
-/* line 50, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 #topMenu {
   background: url(../img/topmenu.png) top center no-repeat;
   padding-top: 20px;
   height: 320px;
 }
 
-/* line 51, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
 #topMenu .Center {
   max-width: 1098px;
   margin: auto;
   position: relative;
 }
+
