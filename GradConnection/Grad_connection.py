@@ -1,6 +1,10 @@
-import urllib2
+import urllib
+import urllib.request
+from urllib.request import urlopen
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 import requests
+import urllib.parse
 import re
 import csv
 
@@ -13,7 +17,7 @@ def remove_prefix(text, prefix):
 	return text
 
 def output_all_info_in_urls(url,file_name):
-	page_gra = urllib2.urlopen(url)
+	page_gra = urlopen(url)
 	soup_graduate_jobs = BeautifulSoup(page_gra, 'html.parser')
 	html = list(soup_graduate_jobs.children)[2]
 	body = list(html.children)[3]
@@ -26,19 +30,20 @@ def output_all_info_in_urls(url,file_name):
 	position2 = []
 	position2 = findOccurences(part, '}')
 	list1 = []
-	for i in range(0, len(position1)-1):
+	for i in range(0, len(position1)):
 		list1.append(part[position1[i]:position2[i]])
 	list_diced = []
-	for i in range(0, len(list1)-1):
+	for i in range(0, len(list1)):
 		list_temp = []
 		temp = []
 		temp = findOccurences(list1[i], ",")
-		for j in range(0, len(temp)-2):
+		for j in range(0, len(temp)-1):
 			list_temp.append(list1[i][temp[j]:temp[j+1]])
-		list_temp.append(list1[i][(temp[len(temp)-1]):(len(list1[i])-1)])
+		'''list_temp.append(list1[i][(temp[len(temp)-1]):(len(list1[i])-1)])
+		'''
 		list_diced.append(list_temp)
 
-	with open("%s_output.csv" %file_name, "wb") as f:
+	with open("%s_output.csv" %file_name, "w", encoding="utf8") as f:
 		writer = csv.writer(f)
 		writer.writerows(list_diced)
 	return part
@@ -47,7 +52,7 @@ def find_all_urls(string, file_name):
 	url_position = []
 	url_position = [m.start() for m in re.finditer('url', string)]
 	url_list = []
-	for i in range(0, len(url_position)-1):
+	for i in range(0, len(url_position)):
 		temp = ''
 		j = url_position[i]
 		while string[j] != ',':
@@ -59,18 +64,20 @@ def find_all_urls(string, file_name):
 		if len(elem) <= 10:
 			url_list.remove(elem)
 
-	for i in range(0, len(url_list)-1):
-		url_list[i] = remove_prefix(url_list[i], "url\":")
+	for i in range(0, len(url_list)):
+		url_list[i] = remove_prefix(url_list[i], "url\":\"")
+		url_list[i] = url_list[i][:-1]
 
-	with open("url_in_%s.csv" %file_name, "wb") as f:
+	with open("url_in_%s.csv" %file_name, "w", encoding="utf8") as f:
 		writer = csv.writer(f)
-		writer.writerow(url_list)
-
+		for word in url_list:
+			writer.writerow([word])
 
 graduate_jobs = 'https://au.gradconnection.com/graduate-jobs/'
 string = ''
 string = output_all_info_in_urls(graduate_jobs, "graduate_jobs")
-find_all_urls(string, "graduate_jobs")
+find_all_urls(string,"graduate_jobs")
+
 
 internships = 'https://au.gradconnection.com/internships/'
 string = ''
@@ -97,3 +104,4 @@ string = ''
 string = output_all_info_in_urls(scholarships, "scholarships")
 find_all_urls(string, "scholarships")
 
+'''
