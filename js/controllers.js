@@ -5,9 +5,13 @@ angular.module('careerInsightsApp')
 		.controller('LoginController', ['$scope', function($scope){
 			
 			$scope.tab = 1;
-			$scope.show = false;
 			$scope.isLogin = true;
 			
+			$scope.user = {email:"", pwd:""};
+			$scope.secPwd = "";
+			$scope.signupForm = {email:"", pwd:"", secPwd:""};
+			
+			// tab control functions
 			$scope.select = function(setTab) {
 				console.log("current tab is "+setTab);
 				$scope.tab = setTab;
@@ -20,5 +24,10 @@ angular.module('careerInsightsApp')
 			
 			$scope.isSelected = function(checkTab) {
 				return ($scope.tab === checkTab);
+			}
+			
+			// sign up functions
+			$scope.samePwd = function(){
+				return ($scope.user.pwd === $scope.secPwd);
 			}
 		}]);
